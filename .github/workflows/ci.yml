@@ -1,0 +1,27 @@
+﻿name: CI Workflow
+on:
+  push:
+    branches:
+      - main  # or the branch you want to trigger the workflow for
+  pull_request:
+    branches:
+      - main  # or the branch you want to trigger for pull requests
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js (if you're working with Node.js)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install  # Adjust based on your project's package manager (e.g., npm, yarn)
+
+      - name: Run tests
+        run: npm test  # Run tests or your specific command
